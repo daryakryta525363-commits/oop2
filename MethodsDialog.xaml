@@ -1,0 +1,67 @@
+<Window x:Class="DotaHeroes.MethodsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Методы управления"
+        Height="620" Width="860"
+        WindowStartupLocation="CenterOwner">
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Поля ввода -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,0,10">
+            <TextBlock Text="Доступные методы" FontSize="18" FontWeight="Bold" Margin="0,0,0,8"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="ID героя:" VerticalAlignment="Center"/>
+                <TextBox x:Name="IdTextBox" Width="60" Height="24" Margin="6,0,16,0"
+                         VerticalContentAlignment="Center"/>
+                <TextBlock Text="ID цели (для атаки):" VerticalAlignment="Center"/>
+                <TextBox x:Name="TargetTextBox" Width="60" Height="24" Margin="6,0,16,0"
+                         VerticalContentAlignment="Center"/>
+                <TextBlock Text="Значение:" VerticalAlignment="Center"/>
+                <TextBox x:Name="AmountTextBox" Text="10" Width="60" Height="24" Margin="6,0,16,0"
+                         VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <TextBlock Text="Для GetInfo() оставьте ID пустым — будут выведены все герои."
+                       Foreground="Gray" FontStyle="Italic" Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Кнопки методов -->
+        <ScrollViewer Grid.Row="1" Grid.Column="0" VerticalScrollBarVisibility="Auto" Margin="0,0,10,0">
+            <StackPanel>
+                <TextBlock Text="МЕТОДЫ HERO" FontWeight="Bold" Margin="0,0,0,4"/>
+                <Button Content="GetInfo()" Height="28" Margin="0,0,0,4" Click="GetInfo_Click"/>
+                <Button Content="Attack(target)" Height="28" Margin="0,0,0,4" Click="Attack_Click"/>
+                <Button Content="UseAbility()" Height="28" Margin="0,0,0,4" Click="UseAbility_Click"/>
+                <Button Content="TakeDamage(значение)" Height="28" Margin="0,0,0,4" Click="TakeDamage_Click"/>
+                <Button Content="IsAlive()" Height="28" Margin="0,0,0,10" Click="IsAlive_Click"/>
+
+                <TextBlock Text="МЕТОДЫ CARRY" FontWeight="Bold" Margin="0,0,0,4"/>
+                <Button Content="CanCriticalHit()" Height="28" Margin="0,0,0,4" Click="CanCriticalHit_Click"/>
+                <Button Content="IncreaseAgility(значение)" Height="28" Margin="0,0,0,10" Click="IncreaseAgility_Click"/>
+
+                <TextBlock Text="МЕТОДЫ SUPPORT" FontWeight="Bold" Margin="0,0,0,4"/>
+                <Button Content="HasEnoughMana(значение)" Height="28" Margin="0,0,0,4" Click="HasEnoughMana_Click"/>
+                <Button Content="RegenerateMana(значение)" Height="28" Margin="0,0,0,4" Click="RegenerateMana_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Вывод результата -->
+        <TextBox x:Name="OutputTextBox" Grid.Row="1" Grid.Column="1"
+                 IsReadOnly="True" TextWrapping="Wrap"
+                 VerticalScrollBarVisibility="Auto" FontFamily="Consolas"/>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Очистить вывод" Width="120" Height="28" Margin="0,0,10,0" Click="ClearOutput_Click"/>
+            <Button Content="Закрыть" Width="100" Height="28" Click="Close_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

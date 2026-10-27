@@ -1,0 +1,63 @@
+<Window x:Class="DotaHeroes.HeroDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить героя"
+        Height="560" Width="440"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Имя:"/>
+            <TextBox x:Name="NameTextBox" Height="26" Margin="0,2,0,10" VerticalContentAlignment="Center"/>
+
+            <TextBlock Text="Здоровье (HP):"/>
+            <TextBox x:Name="HealthTextBox" Height="26" Margin="0,2,0,10" VerticalContentAlignment="Center"/>
+
+            <TextBlock Text="Урон:"/>
+            <TextBox x:Name="DamageTextBox" Height="26" Margin="0,2,0,10" VerticalContentAlignment="Center"/>
+
+            <TextBlock Text="Роль:"/>
+            <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
+                <RadioButton x:Name="CarryRadio" Content="Керри" IsChecked="True"
+                             Margin="0,0,20,0" Checked="HeroType_Changed"/>
+                <RadioButton x:Name="SupportRadio" Content="Саппорт"
+                             Checked="HeroType_Changed"/>
+            </StackPanel>
+
+            <!-- Параметры керри -->
+            <StackPanel x:Name="CarryPanel">
+                <TextBlock Text="Шанс критического удара (%):"/>
+                <StackPanel Orientation="Horizontal" Margin="0,4,0,10">
+                    <Slider x:Name="CritSlider" Minimum="0" Maximum="100" Value="15"
+                            Width="250" TickFrequency="1" IsSnapToTickEnabled="True"
+                            ValueChanged="CritSlider_ValueChanged"/>
+                    <TextBlock x:Name="CritValueText" Text="15%" Margin="12,0,0,0"
+                               VerticalAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+                <TextBlock Text="Ловкость:"/>
+                <TextBox x:Name="AgilityTextBox" Text="10" Height="26" Margin="0,2,0,10"
+                         VerticalContentAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Параметры саппорта -->
+            <StackPanel x:Name="SupportPanel" Visibility="Collapsed">
+                <TextBlock Text="Мана:"/>
+                <TextBox x:Name="ManaTextBox" Text="200" Height="26" Margin="0,2,0,10"
+                         VerticalContentAlignment="Center"/>
+                <TextBlock Text="Сила лечения:"/>
+                <TextBox x:Name="HealPowerTextBox" Text="30" Height="26" Margin="0,2,0,10"
+                         VerticalContentAlignment="Center"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Сохранить" Width="110" Height="30" Margin="0,0,10,0" Click="Save_Click"/>
+            <Button Content="Отмена" Width="110" Height="30" Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
